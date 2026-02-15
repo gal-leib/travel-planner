@@ -5,7 +5,6 @@ export const MOCK_TRIP: Trip = {
   title: "Summer in Tokyo 2024",
   startDate: "2024-08-12",
   endDate: "2024-08-19",
-  isPrivate: true,
 };
 
 export const MOCK_DAYS: DayPlan[] = [

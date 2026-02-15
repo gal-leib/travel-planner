@@ -3,7 +3,6 @@ export interface Trip {
   title: string;
   startDate: string;
   endDate: string;
-  isPrivate: boolean;
 }
 
 export interface Activity {

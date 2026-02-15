@@ -1,7 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import type { Trip } from "@/lib/types";
-import { Download, Lock, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export function ItineraryHeader({ trip }: { trip: Trip }) {
   const start = new Date(trip.startDate).toLocaleDateString("en-US", {
@@ -15,33 +13,20 @@ export function ItineraryHeader({ trip }: { trip: Trip }) {
   });
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-between border-b border-border/60 bg-card/50 px-5 backdrop-blur-sm">
+    <header className="flex h-14 shrink-0 items-center border-b border-border/60 bg-card/50 px-5 backdrop-blur-sm">
       <div className="flex items-center gap-3">
         <div className="flex size-8 items-center justify-center rounded-lg bg-travel/15 text-travel">
           <MapPin className="size-4" />
         </div>
         <div className="flex min-w-0 flex-col">
-          <div className="flex items-center gap-2.5">
-            <h1 className="truncate text-sm font-semibold tracking-tight text-foreground">
-              {trip.title}
-            </h1>
-            {trip.isPrivate && (
-              <Badge variant="secondary" className="gap-1 text-muted-foreground">
-                <Lock className="size-2.5" />
-                Private
-              </Badge>
-            )}
-          </div>
+          <h1 className="truncate text-sm font-semibold tracking-tight text-foreground">
+            {trip.title}
+          </h1>
           <span className="hidden text-xs text-muted-foreground sm:block">
             {start} – {end}
           </span>
         </div>
       </div>
-
-      <Button variant="outline" size="sm">
-        <Download className="size-3.5" data-icon="inline-start" />
-        Export
-      </Button>
     </header>
   );
 }
