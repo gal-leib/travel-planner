@@ -8,9 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "playwright test",
-    "test:mobile": "playwright test --project 'Mobile Chrome' --project 'Mobile Safari'",
-    "test:ui": "playwright test --ui",
-    "test:debug": "playwright test --debug"
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",

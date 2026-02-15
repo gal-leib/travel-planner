@@ -23,7 +23,7 @@ export function ChatPanel({
   messagesEndRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
-    <div className="flex h-full min-h-0 w-full flex-col border-l border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
+    <div data-testid="chat-panel" className="flex h-full min-h-0 w-full flex-col border-l border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
       {/* Header */}
       <div className="flex h-12 shrink-0 items-center gap-2.5 border-b border-border/60 px-4">
         <div className="flex size-6 items-center justify-center rounded-md bg-travel/15 text-travel">
