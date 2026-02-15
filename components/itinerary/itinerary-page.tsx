@@ -15,10 +15,8 @@ import { ItineraryHeader } from "./itinerary-header";
 import { MapPanel } from "./map-panel";
 import { MobileNav } from "./mobile-nav";
 import { TimelinePanel } from "./timeline-panel";
-import { useVisualViewport } from "@/lib/hooks/use-visual-viewport";
 
 export function ItineraryPage() {
-  const { keyboardHeight, offsetTop } = useVisualViewport();
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(
     null
   );
@@ -119,13 +117,7 @@ export function ItineraryPage() {
 
   return (
     <TooltipProvider>
-      <div
-        className="relative flex h-dvh flex-col overflow-hidden bg-background will-change-[transform,padding-bottom]"
-        style={{
-          paddingBottom: `${keyboardHeight}px`,
-          transform: `translateY(${offsetTop}px)`
-        }}
-      >
+      <div className="relative flex h-dvh flex-col overflow-hidden bg-background">
         <ItineraryHeader trip={MOCK_TRIP} />
 
         <div className="flex min-h-0 flex-1 overflow-hidden lg:flex-row">
