@@ -13,7 +13,7 @@ export function MapPanel({
   onSelectActivity: (id: string) => void;
 }) {
   return (
-    <div className="relative flex-1 overflow-hidden bg-background">
+    <div className="relative h-full w-full overflow-hidden bg-background lg:flex-1">
       {/* Dot grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.035]"

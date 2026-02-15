@@ -13,12 +13,14 @@ import {
 import { ChatPanel } from "./chat-panel";
 import { ItineraryHeader } from "./itinerary-header";
 import { MapPanel } from "./map-panel";
+import { MobileNav } from "./mobile-nav";
 import { TimelinePanel } from "./timeline-panel";
 
 export function ItineraryPage() {
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(
     null
   );
+  const [activePanel, setActivePanel] = useState<"timeline" | "map" | "chat">("timeline");
   const [activeTab, setActiveTab] = useState("timeline");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(MOCK_MESSAGES);
   const [chatInput, setChatInput] = useState("");
@@ -115,34 +117,43 @@ export function ItineraryPage() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-screen min-w-[1260px] flex-col bg-background">
+      <div className="flex h-screen flex-col bg-background">
         <ItineraryHeader trip={MOCK_TRIP} />
 
-        <div className="flex flex-1 overflow-hidden">
-          <TimelinePanel
-            days={days}
-            selectedActivityId={selectedActivityId}
-            onSelectActivity={handleSelectActivity}
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-          />
+        <div className="flex flex-1 overflow-hidden lg:flex-row">
+          {/* On mobile, only show the active panel */}
+          <div className={`${activePanel === "timeline" ? "flex" : "hidden"} flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
+            <TimelinePanel
+              days={days}
+              selectedActivityId={selectedActivityId}
+              onSelectActivity={handleSelectActivity}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
+          </div>
 
-          <MapPanel
-            activities={allActivities}
-            selectedActivityId={selectedActivityId}
-            onSelectActivity={handleSelectActivity}
-          />
+          <div className={`${activePanel === "map" ? "flex" : "hidden"} flex-1 lg:flex lg:flex-1`}>
+            <MapPanel
+              activities={allActivities}
+              selectedActivityId={selectedActivityId}
+              onSelectActivity={handleSelectActivity}
+            />
+          </div>
 
-          <ChatPanel
-            messages={chatMessages}
-            chatInput={chatInput}
-            onChatInputChange={setChatInput}
-            onSendMessage={handleSendMessage}
-            onAddSuggestion={handleAddSuggestion}
-            quickActions={MOCK_QUICK_ACTIONS}
-            messagesEndRef={messagesEndRef}
-          />
+          <div className={`${activePanel === "chat" ? "flex" : "hidden"} flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
+            <ChatPanel
+              messages={chatMessages}
+              chatInput={chatInput}
+              onChatInputChange={setChatInput}
+              onSendMessage={handleSendMessage}
+              onAddSuggestion={handleAddSuggestion}
+              quickActions={MOCK_QUICK_ACTIONS}
+              messagesEndRef={messagesEndRef}
+            />
+          </div>
         </div>
+
+        <MobileNav activePanel={activePanel} onChangePanel={setActivePanel} />
       </div>
     </TooltipProvider>
   );

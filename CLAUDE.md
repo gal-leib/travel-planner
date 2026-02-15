@@ -46,6 +46,10 @@ bun run lint        # Run ESLint
 @/ui         // components/ui/
 ```
 
+## Mobile-First Design
+
+Users interact with this app on their phones during trips. Always consider phone usability when building or modifying UI — layouts should be responsive, touch targets should be comfortable, and all features must be accessible on small screens. The app uses `lg:` (1024px) as the breakpoint between mobile single-panel and desktop multi-panel layouts.
+
 ## Adding shadcn/ui Components
 
 To add new shadcn/ui components (already configured with Radix Nova theme):

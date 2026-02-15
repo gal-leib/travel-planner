@@ -17,7 +17,7 @@ export function TimelinePanel({
   onTabChange: (tab: string) => void;
 }) {
   return (
-    <div className="flex w-[420px] shrink-0 flex-col border-r border-border/60 bg-card/30">
+    <div className="flex h-full w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
       <Tabs value={activeTab} onValueChange={onTabChange} className="flex flex-1 flex-col overflow-hidden">
         <div className="shrink-0 border-b border-border/60 px-4 pt-3 pb-0">
           <TabsList variant="line" className="w-full justify-start">

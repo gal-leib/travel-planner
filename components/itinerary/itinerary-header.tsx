@@ -20,9 +20,9 @@ export function ItineraryHeader({ trip }: { trip: Trip }) {
         <div className="flex size-8 items-center justify-center rounded-lg bg-travel/15 text-travel">
           <MapPin className="size-4" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col">
           <div className="flex items-center gap-2.5">
-            <h1 className="text-sm font-semibold tracking-tight text-foreground">
+            <h1 className="truncate text-sm font-semibold tracking-tight text-foreground">
               {trip.title}
             </h1>
             {trip.isPrivate && (
@@ -32,7 +32,7 @@ export function ItineraryHeader({ trip }: { trip: Trip }) {
               </Badge>
             )}
           </div>
-          <span className="text-xs text-muted-foreground">
+          <span className="hidden text-xs text-muted-foreground sm:block">
             {start} – {end}
           </span>
         </div>
