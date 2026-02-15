@@ -117,12 +117,12 @@ export function ItineraryPage() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-screen flex-col bg-background">
+      <div className="flex h-dvh flex-col overflow-hidden bg-background">
         <ItineraryHeader trip={MOCK_TRIP} />
 
-        <div className="flex flex-1 overflow-hidden lg:flex-row">
+        <div className="flex min-h-0 flex-1 overflow-hidden lg:flex-row">
           {/* On mobile, only show the active panel */}
-          <div className={`${activePanel === "timeline" ? "flex" : "hidden"} flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
+          <div className={`${activePanel === "timeline" ? "flex" : "hidden"} min-h-0 flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
             <TimelinePanel
               days={days}
               selectedActivityId={selectedActivityId}
@@ -132,7 +132,7 @@ export function ItineraryPage() {
             />
           </div>
 
-          <div className={`${activePanel === "map" ? "flex" : "hidden"} h-full w-full flex-1 lg:flex lg:flex-1`}>
+          <div className={`${activePanel === "map" ? "flex" : "hidden"} min-h-0 h-full w-full flex-1 lg:flex lg:flex-1`}>
             <MapPanel
               activities={allActivities}
               selectedActivityId={selectedActivityId}
@@ -140,7 +140,7 @@ export function ItineraryPage() {
             />
           </div>
 
-          <div className={`${activePanel === "chat" ? "flex" : "hidden"} flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
+          <div className={`${activePanel === "chat" ? "flex" : "hidden"} min-h-0 flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
             <ChatPanel
               messages={chatMessages}
               chatInput={chatInput}

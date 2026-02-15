@@ -17,8 +17,8 @@ export function TimelinePanel({
   onTabChange: (tab: string) => void;
 }) {
   return (
-    <div className="flex h-full w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
-      <Tabs value={activeTab} onValueChange={onTabChange} className="flex flex-1 flex-col overflow-hidden">
+    <div className="flex h-full min-h-0 w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
+      <Tabs value={activeTab} onValueChange={onTabChange} className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <div className="shrink-0 border-b border-border/60 px-4 pt-3 pb-0">
           <TabsList variant="line" className="w-full justify-start">
             <TabsTrigger value="timeline">Timeline</TabsTrigger>
@@ -29,7 +29,7 @@ export function TimelinePanel({
 
         <TabsContent value="timeline" className="flex-1 overflow-hidden">
           <ScrollArea className="h-full">
-            <div className="pb-16 lg:pb-0">
+            <div className="">
               {days.map((day) => (
                 <TimelineDay
                   key={day.dayIndex}

@@ -16,7 +16,7 @@ export function MobileNav({
   onChangePanel: (panel: Panel) => void;
 }) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex shrink-0 border-t border-border/60 bg-card/80 backdrop-blur-sm lg:hidden">
+    <nav className="flex shrink-0 border-t border-border/60 bg-card/80 backdrop-blur-sm lg:hidden">
       {tabs.map(({ id, label, icon: Icon }) => (
         <button
           key={id}
