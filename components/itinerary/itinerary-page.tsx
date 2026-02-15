@@ -15,8 +15,10 @@ import { ItineraryHeader } from "./itinerary-header";
 import { MapPanel } from "./map-panel";
 import { MobileNav } from "./mobile-nav";
 import { TimelinePanel } from "./timeline-panel";
+import { useVisualViewport } from "@/lib/hooks/use-visual-viewport";
 
 export function ItineraryPage() {
+  const { keyboardHeight, offsetTop } = useVisualViewport();
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(
     null
   );
@@ -117,7 +119,13 @@ export function ItineraryPage() {
 
   return (
     <TooltipProvider>
-      <div className="relative flex h-dvh flex-col overflow-hidden bg-background">
+      <div
+        className="relative flex h-dvh flex-col overflow-hidden bg-background will-change-[transform,padding-bottom]"
+        style={{
+          paddingBottom: `${keyboardHeight}px`,
+          transform: `translateY(${offsetTop}px)`
+        }}
+      >
         <ItineraryHeader trip={MOCK_TRIP} />
 
         <div className="flex min-h-0 flex-1 overflow-hidden lg:flex-row">
@@ -152,11 +160,7 @@ export function ItineraryPage() {
           </div>
         </div>
 
-        {/* Spacer for MobileNav when keyboard is closed */}
-        <div className={`shrink-0 lg:hidden transition-[height] duration-300 ease-in-out overflow-hidden ${isChatInputFocused ? 'h-0' : 'h-16'}`} />
-
-        {/* MobileNav positioned fixed at the bottom */}
-        <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+        <div className={`shrink-0 lg:hidden overflow-hidden transition-[height] duration-300 ease-in-out ${isChatInputFocused ? 'h-0' : 'h-16'}`}>
           <MobileNav activePanel={activePanel} onChangePanel={setActivePanel} />
         </div>
       </div>
