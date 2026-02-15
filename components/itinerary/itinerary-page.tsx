@@ -21,7 +21,6 @@ export function ItineraryPage() {
     null
   );
   const [activePanel, setActivePanel] = useState<"timeline" | "map" | "chat">("timeline");
-  const [activeTab, setActiveTab] = useState("timeline");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(MOCK_MESSAGES);
   const [chatInput, setChatInput] = useState("");
   const [days, setDays] = useState<DayPlan[]>(MOCK_DAYS);
@@ -127,8 +126,6 @@ export function ItineraryPage() {
               days={days}
               selectedActivityId={selectedActivityId}
               onSelectActivity={handleSelectActivity}
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
             />
           </div>
 
