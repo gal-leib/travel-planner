@@ -9,6 +9,7 @@ import {
   Hotel,
   MapPin,
   Plane,
+  ShoppingBag,
 } from "lucide-react";
 
 const categoryIcon: Record<Activity["category"], React.ReactNode> = {
@@ -17,6 +18,7 @@ const categoryIcon: Record<Activity["category"], React.ReactNode> = {
   food: <Coffee className="size-3.5" />,
   attraction: <Camera className="size-3.5" />,
   activity: <MapPin className="size-3.5" />,
+  shopping: <ShoppingBag className="size-3.5" />,
 };
 
 export function TimelineActivityCard({
