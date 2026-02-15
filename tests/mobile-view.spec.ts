@@ -34,75 +34,43 @@ test.describe('Mobile navigation', () => {
   });
 });
 
-test.describe('Timeline scrolling', () => {
-  test('should render Day 1 activities on load', async ({ page }) => {
+test.describe('Daily view navigation', () => {
+  test('should show Day 1 activities on load', async ({ page }) => {
     await page.goto('/');
 
     const timeline = page.getByTestId('timeline-panel');
-    await expect(timeline.getByText('Day 1')).toBeVisible();
     await expect(timeline.getByText('Arrive at Narita Airport')).toBeVisible();
+    // Day 2 content should NOT be in viewport (it's on a different page)
+    await expect(timeline.getByText('Sunrise at Tsukiji Outer Market')).not.toBeInViewport();
   });
 
-  test('should scroll to reveal later days', async ({ page }) => {
+  test('should show day pill bar with correct labels', async ({ page }) => {
     await page.goto('/');
 
     const timeline = page.getByTestId('timeline-panel');
-    const viewport = timeline.locator(SCROLL_VIEWPORT);
+    await expect(timeline.getByRole('button', { name: 'Mon 12' })).toBeVisible();
+    await expect(timeline.getByRole('button', { name: 'Tue 13' })).toBeVisible();
+  });
 
-    // Before scrolling, the viewport should not be at the bottom
-    const initialScroll = await viewport.evaluate(el => el.scrollTop);
-    expect(initialScroll).toBe(0);
+  test('should switch to Day 2 when tapping its pill', async ({ page }) => {
+    await page.goto('/');
 
-    // Scroll the actual Radix viewport to the bottom
-    await viewport.evaluate(el => {
-      el.scrollTop = el.scrollHeight;
-    });
+    const timeline = page.getByTestId('timeline-panel');
+    await timeline.getByRole('button', { name: 'Tue 13' }).click();
 
-    // Verify we scrolled and Day 7 content is in the DOM
-    const scrolledPosition = await viewport.evaluate(el => el.scrollTop);
-    expect(scrolledPosition).toBeGreaterThan(0);
-    await expect(timeline.getByText('Day 7')).toBeVisible();
+    // Day 2 content appears
+    await expect(timeline.getByText('Sunrise at Tsukiji Outer Market')).toBeInViewport();
+    // Day 1 content is gone
+    await expect(timeline.getByText('Arrive at Narita Airport')).not.toBeInViewport();
+  });
+
+  test('should switch to last day via pill', async ({ page }) => {
+    await page.goto('/');
+
+    const timeline = page.getByTestId('timeline-panel');
+    await timeline.getByRole('button', { name: 'Sun 18' }).click();
+
     await expect(timeline.getByText('Depart from Narita Airport')).toBeVisible();
-  });
-
-  test('should show middle days when scrolling partway', async ({ page }) => {
-    await page.goto('/');
-
-    const timeline = page.getByTestId('timeline-panel');
-    const viewport = timeline.locator(SCROLL_VIEWPORT);
-
-    // Scroll to roughly the middle
-    await viewport.evaluate(el => {
-      el.scrollTop = el.scrollHeight / 2;
-    });
-
-    // Day 4 should now be visible after scrolling to middle
-    await expect(timeline.getByText('Day 4')).toBeVisible();
-  });
-
-  test('timeline content should overflow the viewport', async ({ page }) => {
-    await page.goto('/');
-
-    const viewport = page.getByTestId('timeline-panel').locator(SCROLL_VIEWPORT);
-    const { scrollHeight, clientHeight } = await viewport.evaluate(el => ({
-      scrollHeight: el.scrollHeight,
-      clientHeight: el.clientHeight,
-    }));
-
-    // 7 days of activities must exceed the visible area
-    expect(scrollHeight).toBeGreaterThan(clientHeight * 2);
-  });
-
-  test('header should remain visible after scrolling timeline', async ({ page }) => {
-    await page.goto('/');
-
-    const viewport = page.getByTestId('timeline-panel').locator(SCROLL_VIEWPORT);
-    await viewport.evaluate(el => {
-      el.scrollTop = el.scrollHeight;
-    });
-
-    // The trip header is outside the scroll area and should stay visible
-    await expect(page.getByText('Summer in Tokyo 2024')).toBeVisible();
   });
 });
 
