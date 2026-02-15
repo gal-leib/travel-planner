@@ -6,10 +6,14 @@ export function ChatInput({
   value,
   onChange,
   onSend,
+  onFocus,
+  onBlur,
 }: {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }) {
   return (
     <div className="flex items-center gap-2 border-t border-border/60 px-4 py-3">
@@ -19,6 +23,8 @@ export function ChatInput({
           placeholder="Ask about your trip..."
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
           onKeyDown={(e) => {
             if (e.key === "Enter" && value.trim()) onSend();
           }}
