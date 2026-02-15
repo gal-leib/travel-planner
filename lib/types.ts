@@ -12,7 +12,7 @@ export interface Activity {
   time: string;
   title: string;
   description: string;
-  category: "transport" | "hotel" | "food" | "attraction" | "activity";
+  category: "transport" | "hotel" | "food" | "attraction" | "activity" | "shopping";
   mapPosition: { x: number; y: number };
   status?: "just_added";
 }
