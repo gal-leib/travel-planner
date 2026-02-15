@@ -22,7 +22,7 @@ export function ChatInput({
           onKeyDown={(e) => {
             if (e.key === "Enter" && value.trim()) onSend();
           }}
-          className="pl-8 text-[13px]"
+          className="pl-8 text-base lg:text-[13px]"
         />
       </div>
       <Button

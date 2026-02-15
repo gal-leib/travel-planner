@@ -132,7 +132,7 @@ export function ItineraryPage() {
             />
           </div>
 
-          <div className={`${activePanel === "map" ? "flex" : "hidden"} flex-1 lg:flex lg:flex-1`}>
+          <div className={`${activePanel === "map" ? "flex" : "hidden"} h-full w-full flex-1 lg:flex lg:flex-1`}>
             <MapPanel
               activities={allActivities}
               selectedActivityId={selectedActivityId}

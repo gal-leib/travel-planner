@@ -49,7 +49,7 @@ export function ChatPanel({
 
       {/* Messages */}
       <ScrollArea className="flex-1">
-        <div className="space-y-4 py-4">
+        <div className="space-y-4 py-4 pb-16 lg:pb-4">
           {messages.map((msg) => (
             <ChatMessage
               key={msg.id}
@@ -64,11 +64,13 @@ export function ChatPanel({
       </ScrollArea>
 
       {/* Input */}
-      <ChatInput
-        value={chatInput}
-        onChange={onChatInputChange}
-        onSend={onSendMessage}
-      />
+      <div className="mb-16 lg:mb-0">
+        <ChatInput
+          value={chatInput}
+          onChange={onChatInputChange}
+          onSend={onSendMessage}
+        />
+      </div>
     </div>
   );
 }

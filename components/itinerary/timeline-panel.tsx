@@ -29,25 +29,27 @@ export function TimelinePanel({
 
         <TabsContent value="timeline" className="flex-1 overflow-hidden">
           <ScrollArea className="h-full">
-            {days.map((day) => (
-              <TimelineDay
-                key={day.dayIndex}
-                day={day}
-                selectedActivityId={selectedActivityId}
-                onSelectActivity={onSelectActivity}
-              />
-            ))}
+            <div className="pb-16 lg:pb-0">
+              {days.map((day) => (
+                <TimelineDay
+                  key={day.dayIndex}
+                  day={day}
+                  selectedActivityId={selectedActivityId}
+                  onSelectActivity={onSelectActivity}
+                />
+              ))}
+            </div>
           </ScrollArea>
         </TabsContent>
 
         <TabsContent value="expenses" className="flex-1">
-          <div className="flex h-full items-center justify-center text-sm text-muted-foreground/50">
+          <div className="flex h-full items-center justify-center pb-16 text-sm text-muted-foreground/50 lg:pb-0">
             Expense tracking coming soon
           </div>
         </TabsContent>
 
         <TabsContent value="notes" className="flex-1">
-          <div className="flex h-full items-center justify-center text-sm text-muted-foreground/50">
+          <div className="flex h-full items-center justify-center pb-16 text-sm text-muted-foreground/50 lg:pb-0">
             Trip notes coming soon
           </div>
         </TabsContent>

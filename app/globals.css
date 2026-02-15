@@ -130,3 +130,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Mobile viewport height fix - accounts for dynamic browser UI */
+@supports (height: 100dvh) {
+  :root {
+    --vh: 100dvh;
+  }
+}
+
+@supports not (height: 100dvh) {
+  :root {
+    --vh: 100vh;
+  }
+}

@@ -13,7 +13,7 @@ export function MapPanel({
   onSelectActivity: (id: string) => void;
 }) {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-background lg:flex-1">
+    <div className="relative h-full w-full overflow-hidden bg-background lg:flex-1" style={{ minHeight: '300px' }}>
       {/* Dot grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.035]"
@@ -58,7 +58,7 @@ export function MapPanel({
       ))}
 
       {/* Map controls */}
-      <div className="absolute right-4 bottom-4 flex flex-col gap-1.5">
+      <div className="absolute right-4 bottom-20 flex flex-col gap-1.5 lg:bottom-4">
         <Button variant="outline" size="icon-sm" className="bg-card/80 backdrop-blur-sm">
           <Plus className="size-3.5" />
         </Button>
@@ -71,7 +71,7 @@ export function MapPanel({
       </div>
 
       {/* "Map" label */}
-      <div className="absolute left-4 bottom-4 rounded-md bg-card/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-muted-foreground/50 backdrop-blur-sm">
+      <div className="absolute left-4 bottom-20 rounded-md bg-card/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-muted-foreground/50 backdrop-blur-sm lg:bottom-4">
         Map View — Tokyo
       </div>
     </div>
