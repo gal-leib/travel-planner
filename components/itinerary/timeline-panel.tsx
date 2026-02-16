@@ -78,12 +78,12 @@ export function TimelinePanel({
   return (
     <div
       data-testid="timeline-panel"
-      className="flex h-full min-h-0 w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0"
+      className="flex h-full min-h-0 min-w-0 w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0"
     >
       {/* Day pill bar */}
       <div
         ref={pillBarRef}
-        className="flex shrink-0 gap-1 overflow-x-scroll border-b border-border/60 px-3 py-2 scrollbar-none"
+        className="flex shrink-0 gap-1 overflow-x-scroll border-b border-border/60 px-3 py-2 no-scrollbar"
         style={{ scrollbarWidth: "none" }}
       >
         {days.map((day, i) => (
@@ -104,7 +104,7 @@ export function TimelinePanel({
       {/* Swipeable day pages */}
       <div
         ref={scrollContainerRef}
-        className="flex min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto overflow-y-hidden scrollbar-none"
+        className="flex min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ scrollbarWidth: "none" }}
       >
         {days.map((day) => (

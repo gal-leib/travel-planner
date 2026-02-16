@@ -122,7 +122,7 @@ export function ItineraryPage() {
 
         <div className="flex min-h-0 flex-1 overflow-hidden lg:flex-row">
           {/* On mobile, only show the active panel */}
-          <div className={`${activePanel === "timeline" ? "flex" : "hidden"} min-h-0 flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
+          <div className={`${activePanel === "timeline" ? "flex" : "hidden"} min-h-0 min-w-0 flex-1 lg:flex lg:w-auto lg:flex-initial lg:flex-none`}>
             <TimelinePanel
               days={days}
               selectedDayIndex={selectedDayIndex}
