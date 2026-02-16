@@ -83,7 +83,7 @@ export function TimelinePanel({
       {/* Day pill bar */}
       <div
         ref={pillBarRef}
-        className="flex shrink-0 gap-1 overflow-x-auto border-b border-border/60 px-3 py-2 scrollbar-none"
+        className="flex shrink-0 gap-1 overflow-x-scroll border-b border-border/60 px-3 py-2 scrollbar-none"
         style={{ scrollbarWidth: "none" }}
       >
         {days.map((day, i) => (
