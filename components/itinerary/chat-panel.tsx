@@ -13,6 +13,7 @@ export function ChatPanel({
   onAddSuggestion,
   quickActions,
   messagesEndRef,
+  onInputFocusChange,
 }: {
   messages: ChatMessageType[];
   chatInput: string;
@@ -21,6 +22,7 @@ export function ChatPanel({
   onAddSuggestion: (messageId: string) => void;
   quickActions: string[];
   messagesEndRef: React.RefObject<HTMLDivElement | null>;
+  onInputFocusChange?: (focused: boolean) => void;
 }) {
   return (
     <div data-testid="chat-panel" className="flex h-full min-h-0 w-full flex-col border-l border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0">
@@ -69,6 +71,8 @@ export function ChatPanel({
           value={chatInput}
           onChange={onChatInputChange}
           onSend={onSendMessage}
+          onFocus={() => onInputFocusChange?.(true)}
+          onBlur={() => onInputFocusChange?.(false)}
         />
       </div>
     </div>

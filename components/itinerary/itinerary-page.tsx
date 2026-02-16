@@ -21,6 +21,7 @@ export function ItineraryPage() {
     null
   );
   const [activePanel, setActivePanel] = useState<"timeline" | "map" | "chat">("timeline");
+  const [isChatInputFocused, setIsChatInputFocused] = useState(false);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(MOCK_MESSAGES);
   const [chatInput, setChatInput] = useState("");
   const [days, setDays] = useState<DayPlan[]>(MOCK_DAYS);
@@ -116,7 +117,7 @@ export function ItineraryPage() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-dvh flex-col overflow-hidden bg-background">
+      <div className="relative flex h-dvh flex-col overflow-hidden bg-background">
         <ItineraryHeader trip={MOCK_TRIP} />
 
         <div className="flex min-h-0 flex-1 overflow-hidden lg:flex-row">
@@ -146,11 +147,14 @@ export function ItineraryPage() {
               onAddSuggestion={handleAddSuggestion}
               quickActions={MOCK_QUICK_ACTIONS}
               messagesEndRef={messagesEndRef}
+              onInputFocusChange={setIsChatInputFocused}
             />
           </div>
         </div>
 
-        <MobileNav activePanel={activePanel} onChangePanel={setActivePanel} />
+        <div className={`shrink-0 lg:hidden overflow-hidden transition-[height] duration-300 ease-in-out ${isChatInputFocused ? 'h-0' : 'h-16'}`}>
+          <MobileNav activePanel={activePanel} onChangePanel={setActivePanel} />
+        </div>
       </div>
     </TooltipProvider>
   );
