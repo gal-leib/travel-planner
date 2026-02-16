@@ -5,6 +5,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import type { DayPlan } from "@/lib/types";
 import { TimelineDay } from "./timeline-day";
 
+const SCROLL_ANIMATION_DURATION = 350;
+
 export function TimelinePanel({
   days,
   selectedDayIndex,
@@ -38,7 +40,7 @@ export function TimelinePanel({
     container.scrollTo({ left: index * container.clientWidth, behavior: "smooth" });
     onDayChange(index);
     // Reset flag after scroll animation completes
-    setTimeout(() => { isScrollingRef.current = false; }, 350);
+    setTimeout(() => { isScrollingRef.current = false; }, SCROLL_ANIMATION_DURATION);
   }, [onDayChange]);
 
   // Sync pill bar scroll to keep active pill visible
@@ -78,19 +80,18 @@ export function TimelinePanel({
   return (
     <div
       data-testid="timeline-panel"
-      className="flex h-full min-h-0 w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0"
+      className="flex h-full min-h-0 min-w-0 w-full flex-col border-r border-border/60 bg-card/30 lg:w-[420px] lg:shrink-0"
     >
       {/* Day pill bar */}
       <div
         ref={pillBarRef}
         className="flex shrink-0 gap-1 overflow-x-scroll border-b border-border/60 px-3 py-2 scrollbar-none"
-        style={{ scrollbarWidth: "none" }}
       >
         {days.map((day, i) => (
           <button
             key={day.dayIndex}
             onClick={() => scrollToDay(i)}
-            className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-colors ${
               i === selectedDayIndex
                 ? "bg-travel text-travel-foreground"
                 : "text-muted-foreground hover:bg-muted"
@@ -105,7 +106,6 @@ export function TimelinePanel({
       <div
         ref={scrollContainerRef}
         className="flex min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto overflow-y-hidden scrollbar-none"
-        style={{ scrollbarWidth: "none" }}
       >
         {days.map((day) => (
           <div key={day.dayIndex} className="h-full w-full shrink-0 snap-start">
