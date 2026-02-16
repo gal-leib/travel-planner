@@ -28,6 +28,10 @@ export function ItineraryPage() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const handleDayChange = useCallback((index: number) => {
+    setSelectedDayIndex(Math.max(0, Math.min(index, days.length - 1)));
+  }, [days.length]);
+
   const selectedDayActivities = days[selectedDayIndex]?.activities ?? [];
 
   const scrollToBottom = useCallback(() => {
@@ -126,7 +130,7 @@ export function ItineraryPage() {
             <TimelinePanel
               days={days}
               selectedDayIndex={selectedDayIndex}
-              onDayChange={setSelectedDayIndex}
+              onDayChange={handleDayChange}
               selectedActivityId={selectedActivityId}
               onSelectActivity={handleSelectActivity}
             />
